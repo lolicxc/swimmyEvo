@@ -12,14 +12,22 @@ void InitPlayer()
 	player.height = 70.0f;
 	player.shape.setSize({ player.width, player.height });
 	player.shape.setFillColor(sf::Color::Red);
+	player.wasPressed = false;
+	player.jumpCount = 0;
+	player.maxJumps = 2;
 }
 
 void InputPlayer()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+	bool pressing = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
+
+	if (pressing && !player.wasPressed)
 	{
-		player.jump = true;
+		if (player.jumpCount < player.maxJumps)
+			player.jump = true;
 	}
+
+	player.wasPressed = pressing;
 }
 
 void UpdatePlayer(float dt)
@@ -28,27 +36,23 @@ void UpdatePlayer(float dt)
 	float jumpForce = -450.0f;
 	float playerFloor = 450.0f;
 
-	//player.speed += gravity * GetFrameTime();
-
-	//// salto
-	//if (player.moveUp)
-	//{
-	//	player.speed = jumpForce;
-	//	player.moveUp = false;
-	//}
-
-	//player.playerFigure.y += player.speed * GetFrameTime();
 	player.speedY += gravity * dt;
 	if (player.jump)
 	{
 		player.speedY = jumpForce;
 		player.jump = false;
+		player.jumpCount++;
 	}
 	player.posY += player.speedY * dt;
+	
 	if (player.posY >= playerFloor)
 	{
 		player.posY = playerFloor;
+		player.speedY = 0;
+
+		player.jumpCount = 0;   
 	}
+
 }
 
 void DrawPlayer(sf::RenderWindow& window)

@@ -7,9 +7,12 @@ struct Player
 	float posY;
 	float speedY;
 	bool jump;
+	int jumpCount;
+	int maxJumps;
 	float height;
 	float width;
 	sf::RectangleShape shape;
+	bool wasPressed;
 };
 
 extern Player player;
