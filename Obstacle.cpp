@@ -13,6 +13,7 @@ void InitObstacles()
         obstacles[i].posY = 470;
         obstacles[i].posX = width + i * 350;
         obstacles[i].speed = 300.0f;
+        obstacles[i].type = rand() % 2;
     }
 }
 
@@ -24,12 +25,13 @@ void UpdateObstacles(float dt)
 
         if (obstacles[i].posX < -obstacles[i].width)
         {
-            float separation = 700.0f;            // separación mínima entre obstáculos
-            float randomExtra = rand() % 500;     // distancia aleatoria adicional
+            float separation = 700.0f;            
+            float randomExtra = rand() % 500;     
 
             int prev = (i - 1 + maxObstacles) % maxObstacles;
 
             obstacles[i].posX = obstacles[prev].posX + separation + randomExtra;
+            obstacles[i].type = rand() % 2;
         }
     }
     if (CheckCollisionPlayer())
@@ -43,6 +45,7 @@ void DrawObstacles(sf::RenderWindow& window)
     for (int i = 0; i < maxObstacles; i++)
     {
        static sf::Texture obstacleTexture;
+       static sf::Texture obstacleTexture2;
        static bool loaded = false;
         if (!loaded)
         {
@@ -50,15 +53,24 @@ void DrawObstacles(sf::RenderWindow& window)
             {
                 std::cout << "ERROR: no se pudo cargar la textura\n";
             }
+            if (!obstacleTexture2.loadFromFile("res/obstacle2.png"))
+            {
+                std::cout << "ERROR cargando obstacle2.png\n";
+            }
             loaded = true;
         }
         sf::Sprite sprite(obstacleTexture);
+        if (obstacles[i].type == 0)
+            sprite.setTexture(obstacleTexture);
+        else
+            sprite.setTexture(obstacleTexture2);
+
         sprite.setPosition({ obstacles[i].posX, obstacles[i].posY});
         sprite.setScale({ obstacles[i].width / obstacleTexture.getSize().x ,
             obstacles[i].height / obstacleTexture.getSize().y});
 
         window.draw(sprite);
-        // --- DEBUG HITBOX ---
+        // hit box
         sf::RectangleShape hitbox;
         hitbox.setSize({ (float)obstacles[i].width, (float)obstacles[i].height });
         hitbox.setPosition({ obstacles[i].posX, obstacles[i].posY });
@@ -69,7 +81,7 @@ void DrawObstacles(sf::RenderWindow& window)
         window.draw(hitbox);
     }
 }
-
+ 
 bool CheckCollisionPlayer()
 {
     const float margin = 20.0f;
@@ -87,3 +99,4 @@ bool CheckCollisionPlayer()
 
     return false;
 }
+  

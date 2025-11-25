@@ -2,7 +2,7 @@
 #include <iostream>
 
 Player player;
-static sf::Texture playerTexture; // La textura global, solo una vez
+static sf::Texture playerTexture;
 
 void InitPlayer()
 {
@@ -58,12 +58,11 @@ void UpdatePlayer(float dt)
         player.jumpCount = 0;
     }
 
-    // --- Animación ---
     player.animTimer += dt;
     if (player.animTimer >= player.frameTime)
     {
         player.frame++;
-        int totalFrames = playerTexture.getSize().x / 177; // 177 = ancho de cada frame
+        int totalFrames = playerTexture.getSize().x / 177; 
         if (player.frame >= totalFrames)
             player.frame = 0;
 
@@ -82,12 +81,12 @@ void DrawPlayer(sf::RenderWindow& window)
     sprite.setScale({ player.width / frameW, player.height / frameH });
 
     window.draw(sprite);
-    // --- Hitbox ---
+    // hitbox
     sf::RectangleShape hitbox;
     hitbox.setSize({ player.width, player.height});
     hitbox.setPosition({ player.posX, player.posY });
-    hitbox.setFillColor(sf::Color::Transparent); // transparente
-    hitbox.setOutlineColor(sf::Color::Blue);     // color borde
+    hitbox.setFillColor(sf::Color::Transparent); 
+    hitbox.setOutlineColor(sf::Color::Blue);     
     hitbox.setOutlineThickness(2.0f);
 
     window.draw(hitbox);

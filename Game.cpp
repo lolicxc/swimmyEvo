@@ -4,8 +4,8 @@
 #include "utils.h"
 #include <iostream>
 #include "Background.h"
-
-
+#include "MainMenu.h"
+#include "Score.h"
 sf::RenderWindow* gameWindow = nullptr;
 Screens currentScreen = Screens::MENU;
 sf::Font gameFont;
@@ -15,9 +15,11 @@ sf::Font gameFont;
 void InitGame()
 {
     gameFont.openFromFile("res/collage.ttf");
+    InitMainMenu();
     InitPlayer();
     InitObstacles();
     InitBackground();
+    InitScore();
 }
 
 void UpdateGame(float dt)
@@ -27,7 +29,7 @@ void UpdateGame(float dt)
     case Screens::MENU:
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
         {
-            InitGame();             // reiniciar todo
+            InitGame();           
             currentScreen = Screens::GAMEPLAY;
         }
         break;
@@ -37,6 +39,7 @@ void UpdateGame(float dt)
         InputPlayer();
         UpdatePlayer(dt);
         UpdateObstacles(dt);
+        UpdateScore(dt);
 
         if (player.isDead)
         {
@@ -60,11 +63,12 @@ void DrawGame(sf::RenderWindow& window)
     {
     case Screens::MENU:
     {
+        DrawMainMenu(window);
         sf::Text txt(gameFont);
         txt.setString("PRESS SPACE TO PLAY");
         txt.setCharacterSize(40);
         txt.setFillColor(sf::Color::White);
-        txt.setPosition({ 200.f, 200.f });
+        txt.setPosition({ width /2,  height -100.0f});
 
         window.draw(txt);
 
@@ -76,6 +80,9 @@ void DrawGame(sf::RenderWindow& window)
         DrawBackground(window);
         DrawPlayer(window);
         DrawObstacles(window);
+        DrawScore(window);
+
+
         break;
     }
 

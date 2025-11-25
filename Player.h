@@ -16,7 +16,7 @@ struct Player
 
 	int frame;
 	float animTimer;
-	float frameTime; // velocidad animación
+	float frameTime;
 
 };
 

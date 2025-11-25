@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <iostream>
+
 
 struct BackGround
 {
@@ -17,11 +17,6 @@ struct BackGround
 
 extern BackGround gameBackGround;
 
-// Inicializa las texturas y los valores de scroll
 void InitBackground();
-
-// Actualiza el scroll de cada capa, recibe dt
 void UpdateBackground(float dt);
-
-// Dibuja todas las capas en la ventana
 void DrawBackground(sf::RenderWindow& window);
