@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player player;
 
@@ -8,13 +9,14 @@ void InitPlayer()
 	player.posY = 450;
 	player.speedY = -200.0f;
 	player.jump = false;
-	player.width = 90.0f;
-	player.height = 70.0f;
-	player.shape.setSize({ player.width, player.height });
-	player.shape.setFillColor(sf::Color::Red);
+	player.width = 140.0f;
+	player.height = 90.0f;
 	player.wasPressed = false;
 	player.jumpCount = 0;
 	player.maxJumps = 2;
+	player.isDead = false;
+
+
 }
 
 void InputPlayer()
@@ -33,7 +35,7 @@ void InputPlayer()
 void UpdatePlayer(float dt)
 {
 	float gravity = 1000.0f;
-	float jumpForce = -450.0f;
+	float jumpForce = -550.0f;
 	float playerFloor = 450.0f;
 
 	player.speedY += gravity * dt;
@@ -44,19 +46,35 @@ void UpdatePlayer(float dt)
 		player.jumpCount++;
 	}
 	player.posY += player.speedY * dt;
-	
+
 	if (player.posY >= playerFloor)
 	{
 		player.posY = playerFloor;
 		player.speedY = 0;
 
-		player.jumpCount = 0;   
+		player.jumpCount = 0;
 	}
 
 }
 
 void DrawPlayer(sf::RenderWindow& window)
 {
-	player.shape.setPosition({ player.posX, player.posY });
-	window.draw(player.shape);
+	
+	static sf::Texture playerTexture;
+	static bool loaded = false;
+	if (!loaded)
+	{
+		if (!playerTexture.loadFromFile("res/player.png"))
+		{
+			std::cout << "ERROR: no se pudo cargar la textura\n";
+		}
+		loaded = true;
+	}
+
+	// Crear sprite localmente con la textura ya cargada
+	sf::Sprite sprite(playerTexture);
+	sprite.setPosition({ player.posX, player.posY });
+	sprite.setScale({ player.width / playerTexture.getSize().x ,
+		player.height / playerTexture.getSize().y });
+	window.draw(sprite);
 }

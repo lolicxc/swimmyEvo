@@ -29,7 +29,7 @@ void UpdateObstacles(float dt)
     }
     if (CheckCollisionPlayer())
     {
-        std::cout << "COLISION!!\n";
+        player.isDead = true;
     }
 }
 

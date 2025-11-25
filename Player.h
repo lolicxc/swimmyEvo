@@ -11,8 +11,9 @@ struct Player
 	int maxJumps;
 	float height;
 	float width;
-	sf::RectangleShape shape;
 	bool wasPressed;
+	bool isDead;
+
 };
 
 extern Player player;
