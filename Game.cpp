@@ -33,6 +33,7 @@ void UpdateGame(float dt)
         break;
 
     case Screens::GAMEPLAY:
+        UpdateBackground(dt);
         InputPlayer();
         UpdatePlayer(dt);
         UpdateObstacles(dt);
