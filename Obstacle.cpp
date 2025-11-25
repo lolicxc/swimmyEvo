@@ -8,8 +8,8 @@ void InitObstacles()
 {
     for (int i = 0; i < maxObstacles; i++)
     {
-        obstacles[i].width = 40;
-        obstacles[i].height = 50;
+        obstacles[i].width = 80;
+        obstacles[i].height = 80;
         obstacles[i].posY = 470;
         obstacles[i].posX = width + i * 350;
         obstacles[i].speed = 300.0f;
@@ -24,12 +24,17 @@ void UpdateObstacles(float dt)
 
         if (obstacles[i].posX < -obstacles[i].width)
         {
-            obstacles[i].posX = width + 800 + rand() % 600;
+            float separation = 700.0f;            // separación mínima entre obstáculos
+            float randomExtra = rand() % 500;     // distancia aleatoria adicional
+
+            int prev = (i - 1 + maxObstacles) % maxObstacles;
+
+            obstacles[i].posX = obstacles[prev].posX + separation + randomExtra;
         }
     }
     if (CheckCollisionPlayer())
     {
-        player.isDead = true;
+        /*player.isDead = true;*/
     }
 }
 
@@ -37,12 +42,31 @@ void DrawObstacles(sf::RenderWindow& window)
 {
     for (int i = 0; i < maxObstacles; i++)
     {
-        sf::RectangleShape rect;
-        rect.setSize({ (float)obstacles[i].width, (float)obstacles[i].height });
-        rect.setPosition({ obstacles[i].posX, obstacles[i].posY });
-        rect.setFillColor(sf::Color::Green);
+       static sf::Texture obstacleTexture;
+       static bool loaded = false;
+        if (!loaded)
+        {
+            if (!obstacleTexture.loadFromFile("res/obstacle.png"))
+            {
+                std::cout << "ERROR: no se pudo cargar la textura\n";
+            }
+            loaded = true;
+        }
+        sf::Sprite sprite(obstacleTexture);
+        sprite.setPosition({ obstacles[i].posX, obstacles[i].posY});
+        sprite.setScale({ obstacles[i].width / obstacleTexture.getSize().x ,
+            obstacles[i].height / obstacleTexture.getSize().y});
 
-        window.draw(rect);
+        window.draw(sprite);
+        // --- DEBUG HITBOX ---
+        sf::RectangleShape hitbox;
+        hitbox.setSize({ (float)obstacles[i].width, (float)obstacles[i].height });
+        hitbox.setPosition({ obstacles[i].posX, obstacles[i].posY });
+        hitbox.setFillColor(sf::Color::Transparent);
+        hitbox.setOutlineColor(sf::Color::Red);
+        hitbox.setOutlineThickness(2);
+
+        window.draw(hitbox);
     }
 }
 

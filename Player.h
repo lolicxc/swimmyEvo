@@ -14,6 +14,10 @@ struct Player
 	bool wasPressed;
 	bool isDead;
 
+	int frame;
+	float animTimer;
+	float frameTime; // velocidad animación
+
 };
 
 extern Player player;

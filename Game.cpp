@@ -5,9 +5,12 @@
 #include <iostream>
 #include "Background.h"
 
+
 sf::RenderWindow* gameWindow = nullptr;
 Screens currentScreen = Screens::MENU;
 sf::Font gameFont;
+
+
 
 void InitGame()
 {
@@ -93,7 +96,7 @@ void DrawGame(sf::RenderWindow& window)
 
 void RunGame()
 {
-  
+    srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode({ width, height }), "SFML Game");
     window.setFramerateLimit(60);
     sf::Clock clock;

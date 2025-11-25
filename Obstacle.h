@@ -7,8 +7,8 @@ struct Obstacle
 {
 	float posY;
 	float posX;
-	int width;
-	int height;
+	float width;
+	float height;
 	float speed;
 };
 
