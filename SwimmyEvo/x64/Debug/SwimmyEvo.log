@@ -1,8 +1,5 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-  Background.cpp
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Background.cpp(69,15): warning C4244: 'inicializando': conversión de 'T' a 'float'; posible pérdida de datos
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Background.cpp(69,15): warning C4244:         with
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Background.cpp(69,15): warning C4244:         [
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Background.cpp(69,15): warning C4244:             T=unsigned int
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Background.cpp(69,15): warning C4244:         ]
+  Obstacle.cpp
+C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Obstacle.cpp(14,35): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Obstacle.cpp(28,31): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
   SwimmyEvo.vcxproj -> C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\bin\SwimmyEvo.exe

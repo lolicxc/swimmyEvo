@@ -34,7 +34,7 @@ void UpdateObstacles(float dt)
     }
     if (CheckCollisionPlayer())
     {
-        /*player.isDead = true;*/
+        player.isDead = true;
     }
 }
 
@@ -72,12 +72,14 @@ void DrawObstacles(sf::RenderWindow& window)
 
 bool CheckCollisionPlayer()
 {
+    const float margin = 20.0f;
+
     for (int i = 0; i < maxObstacles; i++)
     {
-        if (player.posX < obstacles[i].posX + obstacles[i].width &&
-            player.posX + player.width > obstacles[i].posX &&
-            player.posY < obstacles[i].posY + obstacles[i].height &&
-            player.posY + player.height > obstacles[i].posY)
+        if (player.posX < obstacles[i].posX + obstacles[i].width - margin &&
+            player.posX + player.width > obstacles[i].posX + margin &&
+            player.posY < obstacles[i].posY + obstacles[i].height - margin &&
+            player.posY + player.height > obstacles[i].posY + margin)
         {
             return true;
         }

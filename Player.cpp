@@ -40,7 +40,7 @@ void UpdatePlayer(float dt)
 {
     float gravity = 1000.0f;
     float jumpForce = -550.0f;
-    float playerFloor = 450.0f;
+    float playerFloor = 470.0f;
 
     player.speedY += gravity * dt;
     if (player.jump)
@@ -78,15 +78,13 @@ void DrawPlayer(sf::RenderWindow& window)
 
     sf::Sprite sprite(playerTexture);
     sprite.setTextureRect({ { player.frame * 177, 0}, {177, 177 } });
-    sprite.setOrigin({ 177 / 2.0f, 177 / 2.0f });
     sprite.setPosition({ player.posX, player.posY });
     sprite.setScale({ player.width / frameW, player.height / frameH });
 
     window.draw(sprite);
     // --- Hitbox ---
     sf::RectangleShape hitbox;
-    hitbox.setSize({ player.width, player.height });
-    hitbox.setOrigin({ player.width / 2.0f, player.height / 2.0f }); // mismo origen que el sprite
+    hitbox.setSize({ player.width, player.height});
     hitbox.setPosition({ player.posX, player.posY });
     hitbox.setFillColor(sf::Color::Transparent); // transparente
     hitbox.setOutlineColor(sf::Color::Blue);     // color borde
