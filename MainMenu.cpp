@@ -6,7 +6,7 @@ static sf::Texture menuBGTexture;
 void InitMainMenu()
 {
 	if (!menuBGTexture.loadFromFile("res/backgroundMenu.png"))
-		std::cout << "ERROR: no se pudo cargar la textura\n";
+		std::cout << "ERROR: Texture could not be loaded\n";
 }
 
 void DrawMainMenu(sf::RenderWindow& window)

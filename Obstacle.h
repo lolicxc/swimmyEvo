@@ -1,7 +1,7 @@
 #pragma once
 #include  <SFML/Graphics.hpp>
 
-const int maxObstacles = 3;
+const int maxObstacles = 10;
 
 struct Obstacle 
 {
@@ -16,6 +16,8 @@ struct Obstacle
 	float speedX;
 	float minY;  
 	float maxY;  
+	bool active;
+	float respawnTimer;
 };
 
 extern Obstacle obstacles[maxObstacles];

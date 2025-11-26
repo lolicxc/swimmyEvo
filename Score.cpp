@@ -9,7 +9,7 @@ void InitScore()
 {
 	score = 0;
 	if (!scoreTexture.loadFromFile("res/score.png"))
-		std::cout << "ERROR: no se pudo cargar la textura\n";
+		std::cout << "ERROR: Texture could not be loaded\n";
 }
 
 void UpdateScore(float dt)

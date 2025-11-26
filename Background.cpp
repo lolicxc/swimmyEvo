@@ -8,13 +8,13 @@ BackGround gameBackGround;
 void InitBackground()
 {
 	if (!gameBackGround.part2.loadFromFile("res/Background/Plan 2.png"))
-		std::cout << "Error cargando Plan 2\n";
+		std::cout << "EERROR: Texture could not be loaded\n";
 	if (!gameBackGround.part3.loadFromFile("res/Background/Plan 3.png"))
-		std::cout << "Error cargando Plan 3\n";
+		std::cout << "ERROR: Texture could not be loaded\n";
 	if (!gameBackGround.part4.loadFromFile("res/Background/Plan 4.png"))
-		std::cout << "Error cargando Plan 4\n";
+		std::cout << "ERROR: Texture could not be loaded\n";
 	if (!gameBackGround.part5.loadFromFile("res/Background/Plan 5.png"))
-		std::cout << "Error cargando Plan 5\n";
+		std::cout << "ERROR: Texture could not be loaded\n";
 
 	gameBackGround.scrollPart2 = 0;
 	gameBackGround.scrollPart3 = 0;
