@@ -6,6 +6,8 @@
 #include "Background.h"
 #include "MainMenu.h"
 #include "Score.h"
+#include "Gameover.h"
+
 sf::RenderWindow* gameWindow = nullptr;
 Screens currentScreen = Screens::MENU;
 sf::Font gameFont;
@@ -20,6 +22,7 @@ void InitGame()
     InitObstacles();
     InitBackground();
     InitScore();
+    InitGameover();
 }
 
 void UpdateGame(float dt)
@@ -81,20 +84,12 @@ void DrawGame(sf::RenderWindow& window)
         DrawPlayer(window);
         DrawObstacles(window);
         DrawScore(window);
-
-
         break;
     }
 
     case Screens::GAMEOVER:
     {
-        sf::Text gameovertxt(gameFont);
-        gameovertxt.setString("Game Over! :(");
-        gameovertxt.setCharacterSize(40);
-        gameovertxt.setFillColor(sf::Color::White);
-        gameovertxt.setPosition({ 200.f, 200.f });
-
-        window.draw(gameovertxt);
+        DrawGameover(window);
         break;
     }
     }
@@ -105,7 +100,7 @@ void DrawGame(sf::RenderWindow& window)
 void RunGame()
 {
     srand(time(NULL));
-    sf::RenderWindow window(sf::VideoMode({ width, height }), "SFML Game");
+    sf::RenderWindow window(sf::VideoMode({ width, height }), "SwimmyEvolution");
     window.setFramerateLimit(60);
     sf::Clock clock;
 

@@ -11,6 +11,11 @@ struct Obstacle
 	float height;
 	float speed;
 	int type;
+	float rotation;
+	float rotationSpeed;
+	float speedX;
+	float minY;  
+	float maxY;  
 };
 
 extern Obstacle obstacles[maxObstacles];

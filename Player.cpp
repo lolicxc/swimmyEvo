@@ -82,12 +82,12 @@ void DrawPlayer(sf::RenderWindow& window)
 
     window.draw(sprite);
     // hitbox
-    sf::RectangleShape hitbox;
-    hitbox.setSize({ player.width, player.height});
-    hitbox.setPosition({ player.posX, player.posY });
-    hitbox.setFillColor(sf::Color::Transparent); 
-    hitbox.setOutlineColor(sf::Color::Blue);     
-    hitbox.setOutlineThickness(2.0f);
+    //sf::RectangleShape hitbox;
+    //hitbox.setSize({ player.width, player.height});
+    //hitbox.setPosition({ player.posX, player.posY });
+    //hitbox.setFillColor(sf::Color::Transparent); 
+    //hitbox.setOutlineColor(sf::Color::Blue);     
+    //hitbox.setOutlineThickness(2.0f);
 
-    window.draw(hitbox);
+    //window.draw(hitbox);
 }
