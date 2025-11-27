@@ -12,9 +12,10 @@ void InitScore()
 		std::cout << "ERROR: Texture could not be loaded\n";
 }
 
-void UpdateScore(float dt)
+void UpdateScore()
 {
-	score += dt * 0.5f;
+	float scoreAdd = 10;
+	score += scoreAdd;
 }
 
 void DrawScore(sf::RenderWindow& window)

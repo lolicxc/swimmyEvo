@@ -1,6 +1,7 @@
 #include "Bullet.h"
 #include "Obstacle.h"
 #include "Audio.h"
+#include "Score.h"
 
 Bullets bullets[maxBullets];
 float bulletSpeed = 600.0f;
@@ -89,6 +90,7 @@ bool CheckCollisionBullets()
 				obstacles[j].active = false; 
 				obstacles[j].exploding = true;
 				obstacles[j].explosionTime = 0.0f;
+				UpdateScore();
 				return true;
 			}
 		}

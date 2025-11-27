@@ -36,6 +36,7 @@ void UpdateGame(float dt)
 	case Screens::MENU:
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
 		{
+			PlayButtonSound();
 			InitGame();
 			currentScreen = Screens::GAMEPLAY;
 		}
@@ -49,7 +50,7 @@ void UpdateGame(float dt)
 		InputPlayer();
 		UpdatePlayer(dt, *gameWindow);
 		UpdateObstacles(dt);
-		UpdateScore(dt);
+	
 
 		ShootBullets(playerCenter, *gameWindow, dt);
 		UpdateBullets(dt);
@@ -66,6 +67,7 @@ void UpdateGame(float dt)
 	case Screens::GAMEOVER:
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
 		{
+			PlayButtonSound();
 			InitGame();
 			currentScreen = Screens::MENU;
 		}

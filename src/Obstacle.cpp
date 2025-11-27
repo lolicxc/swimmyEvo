@@ -5,6 +5,7 @@
 #include <SFML/System/Angle.hpp> 
 #include "Audio.h"
 
+
 Obstacle obstacles[maxObstacles];
 
 void InitObstacles()
@@ -73,6 +74,7 @@ void UpdateObstacles(float dt)
 		}
 		else
 		{
+			
 			if (obstacles[i].exploding)
 			{
 				if (obstacles[i].explosionTime == 0.0f)
@@ -125,7 +127,7 @@ void DrawObstacles(sf::RenderWindow& window)
 
 		if (obstacles[i].exploding)
 		{
-		
+
 			static sf::Texture explosionTexture;
 			static bool expLoaded = false;
 
@@ -136,7 +138,7 @@ void DrawObstacles(sf::RenderWindow& window)
 			}
 
 			const int FRAME_COUNT = 4;
-			const float TOTAL_TIME = 0.3f; 
+			const float TOTAL_TIME = 0.3f;
 			float frameTime = TOTAL_TIME / FRAME_COUNT;
 
 			int frame = (int)(obstacles[i].explosionTime / frameTime);
@@ -148,7 +150,7 @@ void DrawObstacles(sf::RenderWindow& window)
 
 			sf::Sprite exp(explosionTexture);
 
-			exp.setTextureRect(sf::IntRect(sf::Vector2i(frame * frameWidth, 0),sf::Vector2i(frameWidth, frameHeight)));
+			exp.setTextureRect(sf::IntRect(sf::Vector2i(frame * frameWidth, 0), sf::Vector2i(frameWidth, frameHeight)));
 
 			exp.setOrigin({ frameWidth / 2.0f, frameHeight / 2.0f });
 
@@ -202,7 +204,7 @@ void DrawObstacles(sf::RenderWindow& window)
 
 			window.draw(hitbox);*/
 		}
-		
+
 	}
 }
 

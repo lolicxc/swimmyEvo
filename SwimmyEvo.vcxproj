@@ -18,6 +18,29 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Audio.h" />
+    <ClInclude Include="src\Background.h" />
+    <ClInclude Include="src\Bullet.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Gameover.h" />
+    <ClInclude Include="src\MainMenu.h" />
+    <ClInclude Include="src\Obstacle.h" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\Score.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Audio.cpp" />
+    <ClCompile Include="src\Background.cpp" />
+    <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Gameover.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MainMenu.cpp" />
+    <ClCompile Include="src\Obstacle.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Score.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -93,7 +116,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -111,7 +134,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,7 +152,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,7 +170,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\SFML-3.0.2\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,31 +181,6 @@
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Audio.cpp" />
-    <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gameover.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Obstacle.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Score.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Audio.h" />
-    <ClInclude Include="Background.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Gameover.h" />
-    <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Obstacle.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Score.h" />
-    <ClInclude Include="Screens.h" />
-    <ClInclude Include="utils.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

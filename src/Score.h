@@ -2,5 +2,5 @@
 #include <SFML/Graphics.hpp>
 
 void InitScore();
-void UpdateScore(float dt);
+void UpdateScore();
 void DrawScore(sf::RenderWindow& window);

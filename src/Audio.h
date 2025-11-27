@@ -3,6 +3,7 @@
 
 extern sf::Music music;
 
+void PlayButtonSound();
 void PlayJumpSound();
 void PlayShootSound();
 void PlayExplotionSound();
