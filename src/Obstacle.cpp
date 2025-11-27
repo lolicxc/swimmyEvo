@@ -4,7 +4,7 @@
 #include <iostream>
 #include <SFML/System/Angle.hpp> 
 #include "Audio.h"
-
+#include "Score.h"
 
 Obstacle obstacles[maxObstacles];
 
@@ -45,17 +45,24 @@ void UpdateObstacles(float dt)
 			if (obstacles[i].rotation >= 360.0f)
 				obstacles[i].rotation -= 360.0f;
 
-			if (obstacles[i].type == 1) // volador
+			if (obstacles[i].type == 1) 
 			{
 				float fallSpeed = 150.0f;
 				obstacles[i].posY += fallSpeed * dt;
+
+				float targetX = player.posX + player.width * 0.5f;
+				float direction = (targetX - obstacles[i].posX);
+
+				obstacles[i].posX += direction * 0.6f * dt;
+
 				if (obstacles[i].posY > 470.0f)
-					obstacles[i].posY = 470.0f; // piso
+					obstacles[i].posY = 470.0f; 
 			}
 
 
 			if (obstacles[i].posX < -obstacles[i].width)
 			{
+				obstacles[i].speed += 20.0f;
 				float separation = 400.0f;
 				float randomExtra = rand() % 500;
 
