@@ -30,7 +30,7 @@ void InitGame()
 
 void UpdateGame(float dt)
 {
-
+	
 	switch (currentScreen)
 	{
 	case Screens::MENU:
@@ -47,7 +47,7 @@ void UpdateGame(float dt)
 		sf::Vector2f playerCenter(player.posX + player.width / 2, player.posY + player.height / 2);
 		UpdateBackground(dt);
 		InputPlayer();
-		UpdatePlayer(dt);
+		UpdatePlayer(dt, *gameWindow);
 		UpdateObstacles(dt);
 		UpdateScore(dt);
 
@@ -60,6 +60,7 @@ void UpdateGame(float dt)
 			currentScreen = Screens::GAMEOVER;
 		}
 		break;
+	
 	}
 	
 	case Screens::GAMEOVER:

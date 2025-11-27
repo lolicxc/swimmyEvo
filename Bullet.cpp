@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "Obstacle.h"
+#include "Audio.h"
 
 Bullets bullets[maxBullets];
 float bulletSpeed = 600.0f;
@@ -11,9 +12,12 @@ float lastShotTime = 0.0f;
 void ShootBullets(sf::Vector2f playerPos, sf::RenderWindow& window, float dt)
 {
 	lastShotTime += dt;
+	sf::Vector2f mouthOffset(40.0f, -10.0f);
+	sf::Vector2f bulletStart = playerPos + mouthOffset;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lastShotTime >= shootCooldown)
 	{
+		PlayShootSound();
 		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
 		sf::Vector2f direction(mousePos.x - playerPos.x, mousePos.y - playerPos.y);
@@ -26,9 +30,9 @@ void ShootBullets(sf::Vector2f playerPos, sf::RenderWindow& window, float dt)
 		{
 			if (!bullets[i].active)
 			{
-				bullets[i].shape = sf::CircleShape(10.0f);
+				bullets[i].shape = sf::CircleShape(7.0f);
 				bullets[i].shape.setFillColor(sf::Color::Cyan);
-				bullets[i].shape.setPosition(playerPos);
+				bullets[i].shape.setPosition(bulletStart);
 				bullets[i].velocity = direction * bulletSpeed;
 				bullets[i].active = true;
 				break;
@@ -83,6 +87,8 @@ bool CheckCollisionBullets()
 			{
 				bullets[i].active = false;
 				obstacles[j].active = false; 
+				obstacles[j].exploding = true;
+				obstacles[j].explosionTime = 0.0f;
 				return true;
 			}
 		}

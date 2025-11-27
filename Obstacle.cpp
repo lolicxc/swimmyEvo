@@ -3,6 +3,7 @@
 #include "Player.h"
 #include <iostream>
 #include <SFML/System/Angle.hpp> 
+#include "Audio.h"
 
 Obstacle obstacles[maxObstacles];
 
@@ -23,6 +24,9 @@ void InitObstacles()
 		obstacles[i].maxY = 500.0f;
 		obstacles[i].active = true;
 		obstacles[i].respawnTimer = 0.0f;
+
+		obstacles[i].exploding = false;
+		obstacles[i].explosionTime = 0.0f;
 	}
 }
 
@@ -62,13 +66,26 @@ void UpdateObstacles(float dt)
 			}
 			obstacles[i].posX += obstacles[i].speedX * dt;
 
-			// invertir dirección al llegar a los límites
+
 			if (obstacles[i].posX < obstacles[i].minY || obstacles[i].posX > obstacles[i].maxY)
 				obstacles[i].speedX = -obstacles[i].speedX;
 
 		}
 		else
 		{
+			if (obstacles[i].exploding)
+			{
+				if (obstacles[i].explosionTime == 0.0f)
+				{
+					PlayExplotionSound();
+				}
+				obstacles[i].explosionTime += dt;
+
+				if (obstacles[i].explosionTime >= 0.5f)
+				{
+					obstacles[i].exploding = false;
+				}
+			}
 
 
 			obstacles[i].respawnTimer += dt;
@@ -102,47 +119,90 @@ void DrawObstacles(sf::RenderWindow& window)
 {
 	for (int i = 0; i < maxObstacles; i++)
 	{
-		if (!obstacles[i].active) continue;
-		static sf::Texture obstacleTexture;
-		static sf::Texture obstacleTexture2;
-		static bool loaded = false;
-		if (!loaded)
+		if (!obstacles[i].active && !obstacles[i].exploding)
+			continue;
+
+
+		if (obstacles[i].exploding)
 		{
-			if (!obstacleTexture.loadFromFile("res/obstacle.png"))
+		
+			static sf::Texture explosionTexture;
+			static bool expLoaded = false;
+
+			if (!expLoaded)
 			{
-				std::cout << "ERROR: Texture could not be loaded\n";
+				explosionTexture.loadFromFile("res/obstacleAnim.png");
+				expLoaded = true;
 			}
-			if (!obstacleTexture2.loadFromFile("res/obstacle2.png"))
-			{
-				std::cout << "ERROR: Texture could not be loaded\n";
-			}
-			loaded = true;
+
+			const int FRAME_COUNT = 4;
+			const float TOTAL_TIME = 0.3f; 
+			float frameTime = TOTAL_TIME / FRAME_COUNT;
+
+			int frame = (int)(obstacles[i].explosionTime / frameTime);
+			if (frame >= FRAME_COUNT) frame = FRAME_COUNT - 1;
+
+
+			int frameWidth = explosionTexture.getSize().x / FRAME_COUNT;
+			int frameHeight = explosionTexture.getSize().y;
+
+			sf::Sprite exp(explosionTexture);
+
+			exp.setTextureRect(sf::IntRect(sf::Vector2i(frame * frameWidth, 0),sf::Vector2i(frameWidth, frameHeight)));
+
+			exp.setOrigin({ frameWidth / 2.0f, frameHeight / 2.0f });
+
+
+			exp.setPosition({ obstacles[i].posX + obstacles[i].width / 2.0f,obstacles[i].posY + obstacles[i].height / 2.0f });
+
+			window.draw(exp);
 		}
-		sf::Sprite sprite(obstacleTexture);
-		if (obstacles[i].type == 0)
-			sprite.setTexture(obstacleTexture);
 		else
-			sprite.setTexture(obstacleTexture2);
-
-		sprite.setOrigin({ obstacleTexture.getSize().x / 2.0f, obstacleTexture.getSize().y / 2.0f });
-
-		sprite.setScale({ obstacles[i].width / obstacleTexture.getSize().x, obstacles[i].height / obstacleTexture.getSize().y });
-
-		sprite.setPosition({ obstacles[i].posX + obstacles[i].width / 2.0f, obstacles[i].posY + obstacles[i].height / 2.0f });
+		{
 
 
-		sprite.setRotation(sf::degrees(obstacles[i].rotation));
+			static sf::Texture obstacleTexture;
+			static sf::Texture obstacleTexture2;
+			static bool loaded = false;
+			if (!loaded)
+			{
+				if (!obstacleTexture.loadFromFile("res/obstacle.png"))
+				{
+					std::cout << "ERROR: Texture could not be loaded\n";
+				}
+				if (!obstacleTexture2.loadFromFile("res/obstacle2.png"))
+				{
+					std::cout << "ERROR: Texture could not be loaded\n";
+				}
+				loaded = true;
+			}
+			sf::Sprite sprite(obstacleTexture);
+			if (obstacles[i].type == 0)
+				sprite.setTexture(obstacleTexture);
+			else
+				sprite.setTexture(obstacleTexture2);
 
-		window.draw(sprite);
-		// hit box
-	/*    sf::RectangleShape hitbox;
-		hitbox.setSize({ (float)obstacles[i].width, (float)obstacles[i].height });
-		hitbox.setPosition({ obstacles[i].posX, obstacles[i].posY });
-		hitbox.setFillColor(sf::Color::Transparent);
-		hitbox.setOutlineColor(sf::Color::Red);
-		hitbox.setOutlineThickness(2);
+			sprite.setOrigin({ obstacleTexture.getSize().x / 2.0f, obstacleTexture.getSize().y / 2.0f });
 
-		window.draw(hitbox);*/
+			sprite.setScale({ obstacles[i].width / obstacleTexture.getSize().x, obstacles[i].height / obstacleTexture.getSize().y });
+
+			sprite.setPosition({ obstacles[i].posX + obstacles[i].width / 2.0f, obstacles[i].posY + obstacles[i].height / 2.0f });
+
+
+			sprite.setRotation(sf::degrees(obstacles[i].rotation));
+
+			window.draw(sprite);
+			// hit box
+		/*    sf::RectangleShape hitbox;
+			hitbox.setSize({ (float)obstacles[i].width, (float)obstacles[i].height });
+			hitbox.setPosition({ obstacles[i].posX, obstacles[i].posY });
+			hitbox.setFillColor(sf::Color::Transparent);
+			hitbox.setOutlineColor(sf::Color::Red);
+			hitbox.setOutlineThickness(2);
+
+			window.draw(hitbox);*/
+		}
+		
 	}
 }
 

@@ -18,6 +18,11 @@ struct Obstacle
 	float maxY;  
 	bool active;
 	float respawnTimer;
+
+	//animacion
+	bool exploding;
+	float explosionTime;
+
 };
 
 extern Obstacle obstacles[maxObstacles];

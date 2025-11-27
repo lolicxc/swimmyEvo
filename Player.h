@@ -19,11 +19,14 @@ struct Player
 	float animTimer;
 	float frameTime;
 
+	sf::Vector2f mouthOffset;
+	float angleDeg;
+
 };
 
 extern Player player;
 
 void InitPlayer();
 void InputPlayer();
-void UpdatePlayer(float dt);
+void UpdatePlayer(float dt, sf::RenderWindow& window);
 void DrawPlayer(sf::RenderWindow& window);

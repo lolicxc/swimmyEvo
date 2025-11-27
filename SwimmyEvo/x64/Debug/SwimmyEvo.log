@@ -1,7 +1,24 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  Audio.cpp
+  Background.cpp
+C:\Users\usuario\source\repos\SwimmyEvo\Background.cpp(69,15): warning C4244: 'inicializando': conversión de 'T' a 'float'; posible pérdida de datos
+C:\Users\usuario\source\repos\SwimmyEvo\Background.cpp(69,15): warning C4244:         with
+C:\Users\usuario\source\repos\SwimmyEvo\Background.cpp(69,15): warning C4244:         [
+C:\Users\usuario\source\repos\SwimmyEvo\Background.cpp(69,15): warning C4244:             T=unsigned int
+C:\Users\usuario\source\repos\SwimmyEvo\Background.cpp(69,15): warning C4244:         ]
+  Bullet.cpp
+  Game.cpp
+C:\Users\usuario\source\repos\SwimmyEvo\Game.cpp(21,23): warning C4834: Descartar el valor de retorno de la función con el atributo [[nodiscard]]
+C:\Users\usuario\source\repos\SwimmyEvo\Game.cpp(116,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  Gameover.cpp
+  Main.cpp
+  MainMenu.cpp
   Obstacle.cpp
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Obstacle.cpp(16,29): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Obstacle.cpp(55,23): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Obstacle.cpp(77,31): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\Obstacle.cpp(87,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  SwimmyEvo.vcxproj -> C:\Users\dolor\OneDrive\Documents\swimmyevolution\swimmyEvo\bin\SwimmyEvo.exe
+C:\Users\usuario\source\repos\SwimmyEvo\Obstacle.cpp(16,29): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario\source\repos\SwimmyEvo\Obstacle.cpp(55,23): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario\source\repos\SwimmyEvo\Obstacle.cpp(77,31): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario\source\repos\SwimmyEvo\Obstacle.cpp(87,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Player.cpp
+  Score.cpp
+  Generando código...
+  SwimmyEvo.vcxproj -> C:\Users\usuario\source\repos\SwimmyEvo\bin\SwimmyEvo.exe
